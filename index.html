@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Shreyas Sreedhara</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#ffffff;--bg2:#f8fafc;--bg3:#f1f5f9;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --accent:#2563eb;--accent-bg:#eff6ff;--accent-text:#1d4ed8;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --navy:#0f1b2d;--navy2:#16263a;
+  --card:#ffffff;--gold:#f59e0b;
+  --shadow:0 4px 6px rgba(0,0,0,0.05),0 10px 30px rgba(0,0,0,0.08);
+}
+[data-theme="dark"]{
+  --bg:#0f1117;--bg2:#161b27;--bg3:#1e2538;
+  --text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;
+  --accent:#3b82f6;--accent-bg:rgba(59,130,246,0.12);--accent-text:#93c5fd;
+  --border:#1e2d3d;--border2:#2d3f55;
+  --navy:#0f1117;--navy2:#161b27;
+  --card:#161b27;--gold:#fbbf24;
+  --shadow:0 4px 6px rgba(0,0,0,0.3),0 10px 30px rgba(0,0,0,0.25);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;font-size:1.02rem;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(15,27,45,0.97);backdrop-filter:blur(10px);z-index:1000;border-bottom:1px solid rgba(255,255,255,0.06);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 5%;}
+.nav-logo{color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;}
+.nav-links{display:flex;gap:1.75rem;list-style:none;align-items:center;}
+.nav-links a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:.82rem;font-weight:500;letter-spacing:.3px;transition:color .2s;}
+.nav-links a:hover{color:#fff;}
+.theme-btn{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.theme-btn:hover{background:rgba(255,255,255,0.2);}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(150deg,#0f1b2d 0%,#16263a 55%,#1a3a5c 100%);display:flex;align-items:center;justify-content:center;padding:80px 5% 60px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,0.1) 0%,transparent 70%);top:-200px;right:-150px;pointer-events:none;}
+.hero::after{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.07) 0%,transparent 70%);bottom:-100px;left:5%;pointer-events:none;}
+.hero-inner{max-width:1100px;width:100%;position:relative;z-index:1;}
+
+/* photo + name row */
+.hero-top{display:flex;align-items:center;gap:2.5rem;margin-bottom:2rem;}
+.hero-photo-wrap{flex-shrink:0;}
+.hero-photo{width:200px;height:200px;border-radius:50%;object-fit:cover;object-position:38% 20%;border:3px solid rgba(59,130,246,0.8);display:block;box-shadow:0 0 0 6px rgba(37,99,235,0.15),0 20px 50px rgba(0,0,0,0.5);}
+.hero-name-block{display:flex;flex-direction:column;gap:.5rem;}
+.hero-chip{display:inline-flex;align-items:center;gap:.4rem;background:rgba(37,99,235,0.18);border:1px solid rgba(59,130,246,0.35);color:#93c5fd;font-size:.72rem;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;padding:.3rem .85rem;border-radius:50px;width:fit-content;}
+.hero-chip::before{content:'';width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0;}
+h1.hero-name{font-family:'Playfair Display',serif;font-size:3rem;color:#fff;line-height:1.1;letter-spacing:-.5px;}
+h1.hero-name span{color:#60a5fa;}
+.hero-location{color:#64748b;font-size:.8rem;display:flex;align-items:center;gap:.3rem;}
+.hero-roles-row{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;}
+.hero-role-pill{color:#93c5fd;font-size:.83rem;font-weight:600;}
+.hero-role-sep{color:#334155;font-size:.85rem;}
+
+/* headline block */
+.hero-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:2rem;}
+.hero-headline{font-family:'Playfair Display',serif;font-size:2.1rem;color:#fff;line-height:1.25;margin-bottom:.85rem;font-weight:700;}
+.hero-sub{color:#94a3b8;font-size:.95rem;line-height:1.8;margin-bottom:1.5rem;max-width:680px;}
+.hero-sub em{color:#cbd5e1;font-style:normal;font-weight:600;}
+.hero-stats-row{display:flex;gap:2rem;margin-bottom:1.75rem;padding:1rem 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);}
+.hero-stat-num{font-size:1.5rem;font-weight:700;color:#60a5fa;line-height:1;}
+.hero-stat-label{font-size:.68rem;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-top:.2rem;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:.75rem;}
+
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.65rem 1.5rem;border-radius:8px;font-weight:600;font-size:.85rem;text-decoration:none;transition:all .2s;border:none;cursor:pointer;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{background:#1d4ed8;transform:translateY(-1px);}
+.btn-ghost{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.18);}
+.btn-ghost:hover{background:rgba(255,255,255,0.13);}
+.btn-gold{background:var(--gold);color:#1e293b;font-weight:700;}
+.btn-gold:hover{background:#d97706;transform:translateY(-1px);}
+
+/* SECTIONS */
+section{padding:88px 5%;}
+.inner{max-width:1100px;margin:0 auto;}
+.sec-label{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:2.3rem;color:var(--text);margin-bottom:.75rem;}
+.sec-bar{width:40px;height:3px;background:var(--accent);border-radius:2px;margin-bottom:2.5rem;}
+.sec-alt{background:var(--bg2);}
+
+/* ABOUT */
+.about-layout{display:grid;grid-template-columns:1fr 380px;gap:3rem;align-items:start;}
+.about-text p{color:var(--text2);line-height:1.85;font-size:.95rem;margin-bottom:.9rem;text-align:justify;}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1.75rem;}
+.stat-box{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;}
+.stat-num{font-size:1.6rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.2rem;}
+.stat-label{font-size:.76rem;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.8px;}
+.highlights{display:flex;flex-direction:column;gap:.75rem;}
+.hl-icon{width:36px;height:36px;border-radius:9px;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;margin-top:.05rem;}
+.hl-title{font-size:.87rem;font-weight:700;color:var(--text);margin-bottom:.15rem;}
+.hl-desc{font-size:.78rem;color:var(--text3);line-height:1.5;}
+.contact-strip{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;}
+.contact-pill{display:inline-flex;align-items:center;gap:.45rem;background:var(--bg3);border:1px solid var(--border);border-radius:50px;padding:.4rem .9rem;font-size:.8rem;color:var(--text2);text-decoration:none;transition:border-color .2s,color .2s;}
+.contact-pill:hover{border-color:var(--accent);color:var(--accent);}
+.about-left{display:flex;flex-direction:column;align-items:center;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;}
+.sk-icon{width:26px;height:26px;border-radius:6px;background:var(--accent-bg);color:var(--accent-text);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+.tag{background:var(--accent-bg);color:var(--accent-text);font-size:.75rem;font-weight:500;padding:.25rem .65rem;border-radius:50px;}
+.tag-gray{background:var(--bg3);color:var(--text2);}
+
+/* TIMELINE */
+.timeline{padding-left:1.5rem;border-left:2px solid var(--border);}
+.tl-item{position:relative;padding-left:1.75rem;margin-bottom:2rem;}
+.tl-dot{position:absolute;left:-2.15rem;top:.4rem;width:13px;height:13px;border-radius:50%;background:var(--accent);border:2.5px solid var(--bg);box-shadow:0 0 0 2px var(--accent);}
+.tl-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.6rem;}
+.tl-role{font-weight:700;font-size:.97rem;color:var(--text);}
+.tl-company{color:var(--accent);font-weight:600;font-size:.85rem;margin-top:.15rem;}
+.tl-date{font-size:.76rem;color:var(--text3);background:var(--bg3);padding:.25rem .7rem;border-radius:50px;white-space:nowrap;}
+.award{display:inline-flex;align-items:center;gap:.4rem;background:#fffbeb;border:1px solid #fde68a;color:#92400e;font-size:.76rem;font-weight:600;padding:.25rem .7rem;border-radius:50px;margin-bottom:.7rem;}
+[data-theme="dark"] .award{background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.3);color:#fcd34d;}
+ul.tl-list{padding-left:1rem;}
+ul.tl-list li{color:var(--text2);font-size:.875rem;line-height:1.75;margin-bottom:.35rem;}
+
+/* FOUNDER */
+.founder-card{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:16px;padding:2.5rem;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;}
+[data-theme="dark"] .founder-card{background:linear-gradient(135deg,#0f1117,#161b27);border:1px solid var(--border);}
+.founder-icon{width:72px;height:72px;border-radius:16px;background:rgba(245,158,11,0.2);border:1px solid rgba(245,158,11,0.35);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;}
+.founder-card h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:.5rem;}
+.founder-stat{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);color:#fbbf24;font-size:.8rem;font-weight:600;padding:.35rem .85rem;border-radius:50px;}
+
+/* RESEARCH */
+.research-card{background:linear-gradient(135deg,#0f1b2d,#1a3a5c);border-radius:16px;padding:2.5rem;}
+[data-theme="dark"] .research-card{background:linear-gradient(135deg,#0a0f1a,#0f1b2d);border:1px solid var(--border);}
+.research-card h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:#fff;margin-bottom:.75rem;}
+.research-card p{color:#cbd5e1;line-height:1.8;font-size:.92rem;margin-bottom:1.25rem;}
+.research-card .tl-list li{color:#cbd5e1;}
+.research-card .tl-list li strong{color:#f1f5f9;}
+.r-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem;}
+.r-tag{background:rgba(59,130,246,0.2);border:1px solid rgba(59,130,246,0.35);color:#93c5fd;font-size:.76rem;padding:.25rem .7rem;border-radius:50px;}
+.pub-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.35);color:#fcd34d;font-size:.8rem;font-weight:600;padding:.35rem .9rem;border-radius:50px;}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+.edu-card h4{font-weight:700;color:var(--text);font-size:.97rem;margin-bottom:.25rem;}
+.edu-inst{color:var(--accent);font-weight:600;font-size:.85rem;margin-bottom:.5rem;}
+.edu-card p{color:var(--text2);font-size:.86rem;line-height:1.65;}
+.cgpa{display:inline-block;background:var(--accent-bg);color:var(--accent-text);font-size:.75rem;font-weight:700;padding:.25rem .65rem;border-radius:50px;margin-top:.6rem;}
+
+/* CERTIFICATIONS */
+.cert-providers{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.cert-provider-block h3{font-size:.85rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:1rem;display:flex;align-items:center;gap:.75rem;}
+.cert-provider-block h3::after{content:'';flex:1;height:1px;background:var(--border);}
+.cert-list{display:flex;flex-direction:column;gap:.6rem;}
+.cert-name{font-weight:600;font-size:.875rem;color:var(--text);}
+.cert-sub{font-size:.76rem;color:var(--text3);margin-top:.1rem;}
+.cert-arrow{font-size:.8rem;color:var(--accent);opacity:.7;flex-shrink:0;}
+.cert-badge{font-size:.72rem;font-weight:700;background:var(--accent-bg);color:var(--accent-text);padding:.2rem .55rem;border-radius:50px;flex-shrink:0;}
+
+/* CARD HOVER ANIMATIONS */
+.skill-card,
+.tl-card,
+.edu-card,
+.cert-item,
+.hl-card,
+.stat-box{
+  transition:transform .28s cubic-bezier(.22,.68,0,1.2),
+             box-shadow .28s ease,
+             border-color .28s ease;
+}
+.skill-card:hover,
+.tl-card:hover,
+.edu-card:hover,
+.hl-card:hover,
+.stat-box:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.13),0 4px 14px rgba(37,99,235,0.1);
+  border-color:var(--accent);
+}
+.cert-item:hover{
+  transform:translateY(-4px);
+  box-shadow:0 14px 36px rgba(0,0,0,0.1),0 3px 10px rgba(37,99,235,0.08);
+  border-color:var(--accent);
+}
+a.cert-item:hover{border-color:var(--accent);}
+
+/* card shared base */
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.4rem;}
+.skill-card h4{font-size:.85rem;font-weight:700;color:var(--text);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;}
+.tl-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;}
+.cert-item{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.hl-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.25rem;display:flex;align-items:flex-start;gap:.9rem;}
+a.cert-item{text-decoration:none;cursor:pointer;}
+
+/* FADE-IN */
+.fade-in{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+/* FOOTER */
+footer{background:var(--navy);padding:2rem 5%;text-align:center;}
+[data-theme="dark"] footer{background:#0a0f1a;}
+footer p{color:#475569;font-size:.82rem;margin-bottom:.6rem;}
+footer a{color:#64748b;text-decoration:none;margin:0 .6rem;font-size:.82rem;transition:color .2s;}
+footer a:hover{color:#94a3b8;}
+
+/* =============================================
+   RESPONSIVE — additions only, no originals changed
+   ============================================= */
+
+/* Hamburger button */
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;margin-left:.5rem;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,0.8);border-radius:2px;transition:transform .25s,opacity .25s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* Mobile nav drawer */
+@media(max-width:768px){
+  .nav-hamburger{display:flex;}
+
+  .nav-links{
+    display:none;
+    position:fixed;
+    top:60px;left:0;right:0;
+    background:rgba(15,27,45,0.98);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    padding:.5rem 0 1rem;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+    z-index:999;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links li{width:100%;}
+  .nav-links a{display:block;padding:.75rem 5%;font-size:.9rem;width:100%;}
+  .nav-links li:last-child{padding:.75rem 5% .25rem;display:flex;align-items:center;}
+
+  /* Hero */
+  .hero{padding:80px 5% 50px;}
+  .hero-top{flex-direction:column;text-align:center;align-items:center;gap:1.5rem;}
+  .hero-photo{width:150px;height:150px;}
+  .hero-name-block{align-items:center;}
+  .hero-chip{align-self:center;}
+  h1.hero-name{font-size:2.1rem;}
+  .hero-roles-row,.hero-btns{justify-content:center;}
+  .hero-headline{font-size:1.4rem;}
+  .hero-sub{font-size:.88rem;}
+  .hero-stats-row{gap:.85rem;flex-wrap:wrap;}
+  .hero-stat-num{font-size:1.25rem;}
+
+  /* Sections */
+  section{padding:60px 5%;}
+  .sec-title{font-size:1.75rem;}
+
+  /* About */
+  .about-layout{grid-template-columns:1fr;}
+  .about-left{align-items:flex-start;}
+  .about-stats{grid-template-columns:1fr 1fr;}
+
+  /* Timeline */
+  .timeline{padding-left:1rem;}
+  .tl-item{padding-left:1.25rem;}
+  .tl-dot{left:-1.6rem;}
+  .tl-head{flex-direction:column;gap:.35rem;}
+
+  /* Founder */
+  .founder-card{grid-template-columns:1fr;gap:1.25rem;padding:1.75rem;}
+  .founder-icon{width:56px;height:56px;font-size:1.6rem;}
+  .founder-card h3{font-size:1.2rem;}
+
+  /* Research */
+  .research-card{padding:1.75rem;}
+  .research-card h3{font-size:1.2rem;}
+  .pub-badge{font-size:.72rem;padding:.3rem .7rem;}
+
+  /* Education */
+  .edu-grid{grid-template-columns:1fr;}
+
+  /* Certifications */
+  .cert-providers{grid-template-columns:1fr;}
+
+  /* Footer */
+  footer a{margin:0 .35rem;}
+}
+
+/* Tablet — 769px to 1024px */
+@media(min-width:769px) and (max-width:1024px){
+  .about-layout{grid-template-columns:1fr 300px;gap:2rem;}
+  h1.hero-name{font-size:2.5rem;}
+  .hero-headline{font-size:1.75rem;}
+  .hero-photo{width:170px;height:170px;}
+  .founder-card{gap:1.5rem;padding:2rem;}
+  .cert-providers{gap:1.25rem;}
+  section{padding:72px 5%;}
+}
+
+/* Very small phones */
+@media(max-width:400px){
+  h1.hero-name{font-size:1.8rem;}
+  .hero-photo{width:120px;height:120px;}
+  .hero-headline{font-size:1.2rem;}
+  .about-stats{grid-template-columns:1fr;}
+  .hero-stats-row{gap:.6rem;}
+  .btn{padding:.55rem 1.1rem;font-size:.8rem;}
+  .contact-pill{font-size:.73rem;padding:.35rem .7rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo">Shreyas Sreedhara</span>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" class="nav-link-item">About</a></li>
+      <li><a href="#skills" class="nav-link-item">Skills</a></li>
+      <li><a href="#experience" class="nav-link-item">Experience</a></li>
+      <li><a href="#founder" class="nav-link-item">Venture</a></li>
+      <li><a href="#research" class="nav-link-item">Research</a></li>
+      <li><a href="#education" class="nav-link-item">Education</a></li>
+      <li><a href="#certifications" class="nav-link-item">Certs</a></li>
+      <li><button class="theme-btn" id="themeBtn" title="Toggle theme">🌙</button></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <!-- Photo + Name side by side -->
+    <div class="hero-top">
+      <div class="hero-photo-wrap">
+        <img id="heroImg" class="hero-photo" src="shreyas.jpg" alt="Shreyas Sreedhara"/>
+      </div>
+      <div class="hero-name-block">
+        <div class="hero-chip">Open to opportunities</div>
+        <h1 class="hero-name">Shreyas <span>Sreedhara</span></h1>
+        <span class="hero-location">📍 Melbourne, VIC</span>
+        <div class="hero-roles-row">
+          <span class="hero-role-pill">Data Engineer</span>
+          <span class="hero-role-sep">|</span>
+          <span class="hero-role-pill">Problem Solver</span>
+          <span class="hero-role-sep">|</span>
+          <span class="hero-role-pill">Former Founder</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Headline + sub + stats + buttons -->
+    <div class="hero-bottom">
+      <h2 class="hero-headline">Architecting the Data Infrastructure<br/>that Powers the Future.</h2>
+      <p class="hero-sub">From scaling educational startups to monitoring global exchange pipelines — I build for <em>reliability</em>, <em>automation</em>, and <em>impact</em>.</p>
+      <div class="hero-stats-row">
+        <div class="hero-stat"><div class="hero-stat-num">1.5</div><div class="hero-stat-label">Yrs Experience</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">1</div><div class="hero-stat-label">Publication</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">40+</div><div class="hero-stat-label">Students</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">10+</div><div class="hero-stat-label">Certifications</div></div>
+      </div>
+      <div class="hero-btns">
+        <a href="mailto:shreyas.sharma3002@gmail.com" class="btn btn-primary">✉ Contact Me</a>
+        <a href="https://github.com/shreyassharma3002" target="_blank" class="btn btn-ghost">GitHub</a>
+        <a href="https://www.linkedin.com/in/shreyas-s-567b32220/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner">
+    <div class="sec-label">Who I am</div>
+    <h2 class="sec-title">Professional Summary</h2>
+    <div class="sec-bar"></div>
+    <div class="about-layout">
+      <div class="about-left">
+        <div class="about-text">
+          <p>I'm a Data Engineer and ML Researcher currently pursuing a <strong>Master of Data Science at RMIT University</strong>, Melbourne. My career has taken me from the trading floors of the <strong>London Stock Exchange Group</strong> to a research lab working with <strong>Indian Space Research Organisation</strong> — always at the intersection of data, automation, and real-world impact.</p>
+          <p>I thrive on building systems that <em>actually work</em> under pressure — whether that's a mission-critical pipeline processing financial data 24/7, an AI chatbot translating natural language into business intelligence, or an anomaly detection model safeguarding spacecraft telemetry.</p>
+          <p>Beyond the code, I'm a founder, a published researcher, and someone who genuinely enjoys the craft of turning messy, complex data into something clean and meaningful.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box"><div class="stat-num">2+</div><div class="stat-label">Years Industry Exp.</div></div>
+          <div class="stat-box"><div class="stat-num">1</div><div class="stat-label">Published Paper</div></div>
+          <div class="stat-box"><div class="stat-num">40+</div><div class="stat-label">Students Mentored</div></div>
+          <div class="stat-box"><div class="stat-num">10+</div><div class="stat-label">Certifications</div></div>
+        </div>
+        <div class="contact-strip">
+          <a href="mailto:shreyas.sharma3002@gmail.com" class="contact-pill">✉ shreyas.sharma3002@gmail.com</a>
+          <a href="tel:+61423354196" class="contact-pill">📞 +61 423 354 196</a>
+          <span class="contact-pill">📍 Melbourne, VIC</span>
+        </div>
+      </div>
+      <div class="highlights">
+        <div class="hl-card"><div class="hl-icon">🏦</div><div><div class="hl-title">Financial Market Infrastructure</div><div class="hl-desc">Maintained production-grade pipelines at London Stock Exchange Group — awarded for operational excellence.</div></div></div>
+        <div class="hl-card"><div class="hl-icon">🛰</div><div><div class="hl-title">Space Systems Research</div><div class="hl-desc">Published researcher with Indian Space Research Organisation, applying LSTM & GRU to spacecraft telemetry anomaly detection.</div></div></div>
+        <div class="hl-card"><div class="hl-icon">🤖</div><div><div class="hl-title">AI-Powered Applications</div><div class="hl-desc">Built enterprise chatbots using OpenAI API + FastAPI + PostgreSQL replacing entire manual reporting workflows.</div></div></div>
+        <div class="hl-card"><div class="hl-icon">🎓</div><div><div class="hl-title">RMIT University</div><div class="hl-desc">Currently deepening expertise in data science, ML, and statistical modelling in Melbourne.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="sec-alt">
+  <div class="inner">
+    <div class="sec-label">Technical Expertise</div>
+    <h2 class="sec-title">Skills & Technologies</h2>
+    <div class="sec-bar"></div>
+    <div class="skills-grid">
+      <div class="skill-card"><h4><span class="sk-icon">🐍</span> Languages</h4><div class="tags"><span class="tag">Python (Advanced)</span><span class="tag">SQL</span><span class="tag">R</span></div></div>
+      <div class="skill-card"><h4><span class="sk-icon">🗄</span> Databases</h4><div class="tags"><span class="tag">PostgreSQL</span><span class="tag">Oracle DB</span></div></div>
+      <div class="skill-card"><h4><span class="sk-icon">🖥</span> Frameworks & UI</h4><div class="tags"><span class="tag">FastAPI</span><span class="tag">Streamlit</span><span class="tag">OpenAI API</span></div></div>
+      <div class="skill-card"><h4><span class="sk-icon">⚙</span> Pipelines & ETL</h4><div class="tags"><span class="tag">Apache Airflow</span><span class="tag">Control-M</span><span class="tag">Jenkins</span><span class="tag">Ansible</span><span class="tag">Terraform</span><span class="tag">CI/CD</span></div></div>
+      <div class="skill-card"><h4><span class="sk-icon">☁</span> Cloud & DevOps</h4><div class="tags"><span class="tag">AWS</span><span class="tag">Git</span><span class="tag">Power Apps</span><span class="tag">Power BI</span><span class="tag tag-gray">Infrastructure Monitoring</span></div></div>
+      <div class="skill-card"><h4><span class="sk-icon">📋</span> ITSM & Monitoring</h4><div class="tags"><span class="tag">ServiceNow</span><span class="tag">Confluence</span><span class="tag tag-gray">Incident Management</span></div></div>
+      <div class="skill-card"><h4><span class="sk-icon">🤖</span> ML & Research</h4><div class="tags"><span class="tag">LSTM</span><span class="tag">GRU</span><span class="tag">MPPCACD</span><span class="tag tag-gray">Anomaly Detection</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="inner">
+    <div class="sec-label">Career</div>
+    <h2 class="sec-title">Work Experience</h2>
+    <div class="sec-bar"></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div><div class="tl-role">Engineer — Application Management</div><div class="tl-company">London Stock Exchange Group</div></div>
+            <span class="tl-date">Jan 2025 – Jan 2026</span>
+          </div>
+          <div class="award">🏆 Awarded for Operational Excellence</div>
+          <ul class="tl-list">
+            <li><strong>Automated Incident Engineering:</strong> Architected an end-to-end incident management solution using Power Apps that automated ticket triaging and cross-team communication. Triggered automated email responses to stakeholders and instant failover notifications to the engineering team, reducing average resolution time by <strong>80%</strong>.</li>
+            <li><strong>Mission-Critical Pipeline Orchestration:</strong> Managed and optimized complex data workflows using <strong>Control-M and Apache Airflow</strong>, ensuring seamless 24/7 execution of financial operations and high-frequency data transfers.</li>
+            <li><strong>Financial Systems Support (Murex):</strong> Leveraged Murex monitoring tools to maintain the integrity of trading and risk management platforms, ensuring high availability for critical capital markets infrastructure.</li>
+            <li><strong>Incident Command & Resolution:</strong> Acted as primary decision-maker during production outages, directing recovery efforts for mission-critical systems to minimise downstream financial impact and meet strict regulatory SLAs.</li>
+            <li><strong>Operational Governance:</strong> Standardised structured ticket workflows in <strong>ServiceNow</strong> and curated a comprehensive technical knowledge base in <strong>Confluence</strong>, improving team response accuracy and audit readiness.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-head">
+            <div><div class="tl-role">Software Engineer Trainee</div><div class="tl-company">Progton Pvt Ltd</div></div>
+            <span class="tl-date">Jul 2024 – Dec 2024</span>
+          </div>
+          <ul class="tl-list">
+            <li><strong>NL-to-SQL Engine Development:</strong> Architected an enterprise-grade AI agent using <strong>FastAPI and OpenAI API</strong> that translated complex natural language prompts into optimised SQL queries, enabling non-technical stakeholders to query business data directly.</li>
+            <li><strong>Automated Data Visualisation:</strong> Integrated a <strong>Streamlit</strong> frontend with a <strong>PostgreSQL</strong> backend to dynamically generate structured reports and interactive visualisations based on real-time query results.</li>
+            <li><strong>Financial Intelligence Automation:</strong> Streamlined tax compliance by automating GST calculations and financial report generation, reducing manual reporting overhead through conversational AI workflows.</li>
+            <li><strong>Scalable Backend Architecture:</strong> Designed a robust data retrieval and transformation layer capable of handling high-concurrency requests and large-scale enterprise datasets with minimal latency.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder" class="sec-alt">
+  <div class="inner">
+    <div class="sec-label">Entrepreneurship</div>
+    <h2 class="sec-title">Venture</h2>
+    <div class="sec-bar"></div>
+    <div class="founder-card">
+      <div class="founder-icon">💡</div>
+      <div>
+        <h3>Founder & Managing Director — Yellow Minds</h3>
+        <p style="color:#94a3b8;font-size:.9rem;line-height:1.75;margin-bottom:1rem;">Founded and scaled an educational startup from the ground up — and ultimately negotiated its successful acquisition by a larger educational institute.</p>
+        <ul class="tl-list" style="margin-bottom:1.25rem;">
+          <li style="color:#94a3b8;"><strong style="color:#e2e8f0;">Strategic Leadership & Operations:</strong> Maintained full P&L responsibility and oversaw end-to-end management, from curriculum design to student acquisition.</li>
+          <li style="color:#94a3b8;"><strong style="color:#e2e8f0;">Data-Driven Academic Excellence:</strong> Implemented targeted learning frameworks resulting in <strong style="color:#fbbf24;">90% of the core cohort achieving top-tier academic marks</strong>, with a minimum 30% performance uplift across the broader student body.</li>
+          <li style="color:#94a3b8;"><strong style="color:#e2e8f0;">Business Acquisition & Exit:</strong> Successfully negotiated the acquisition of Yellow Minds by a larger educational institute, overseeing the transition of assets, student records, and operational workflows.</li>
+          <li style="color:#94a3b8;"><strong style="color:#e2e8f0;">Stakeholder Management:</strong> Directed all communications between students, parents, and staff, ensuring high retention and community trust throughout the business lifecycle.</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem;">
+          <span class="founder-stat">🎓 40+ active learners</span>
+          <span class="founder-stat" style="background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.3);color:#86efac;">✓ Successfully acquired</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="inner">
+    <div class="sec-label">Publications</div>
+    <h2 class="sec-title">Research & Accomplishments</h2>
+    <div class="sec-bar"></div>
+    <div class="research-card">
+      <h3>Research Intern — Indian Space Research Organisation (ISRO)</h3>
+      <p>Contributed to a national-level research programme developing predictive maintenance intelligence for satellite and space systems, taking the work from theoretical modelling through to a functional operational deployment within an active ISRO branch system.</p>
+      <ul class="tl-list" style="margin-bottom:1.25rem;">
+        <li><strong>Deep Learning for Anomaly Detection:</strong> Developed a robust anomaly detection framework using the <strong>MPPCACD</strong> model to identify statistical deviations in high-dimensional satellite datasets.</li>
+        <li><strong>Time-Series Forecasting & Prediction:</strong> Engineered and optimised <strong>GRU</strong> and <strong>LSTM</strong> recurrent neural network architectures to predict future anomalies and system states with high temporal accuracy.</li>
+        <li><strong>Production Integration:</strong> Successfully integrated validated models into an active ISRO branch system, transitioning the research from theoretical to a functional operational tool.</li>
+        <li><strong>Formal Recognition:</strong> Awarded an official <strong>ISRO Certificate of Completion</strong> for the successful delivery and deployment of the predictive maintenance module.</li>
+      </ul>
+      <div class="r-tags">
+        <span class="r-tag">LSTM</span><span class="r-tag">GRU</span><span class="r-tag">MPPCACD</span><span class="r-tag">Spacecraft Telemetry</span><span class="r-tag">Anomaly Detection</span><span class="r-tag">Applied ML</span>
+      </div>
+      <span class="pub-badge">📄 Published — ACOIT 2024 · Asian Conference on Innovation in Technology</span>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="sec-alt">
+  <div class="inner">
+    <div class="sec-label">Academic Background</div>
+    <h2 class="sec-title">Education</h2>
+    <div class="sec-bar"></div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <h4>Master of Data Science</h4>
+        <div class="edu-inst">RMIT University, Melbourne</div>
+        <p>Advanced studies in data science, machine learning, and statistical modelling with a focus on real-world engineering and research applications.</p>
+        <span class="cgpa">Currently pursuing</span>
+      </div>
+      <div class="edu-card">
+        <h4>Bachelor of Engineering — Computer Science & Engineering</h4>
+        <div class="edu-inst">Global Academy of Technology</div>
+        <p>Graduated with distinction, building a strong foundation in algorithms, systems design, databases, and software engineering principles.</p>
+        <span class="cgpa">CGPA: 8.81 / 10</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="inner">
+    <div class="sec-label">Credentials</div>
+    <h2 class="sec-title">Certifications</h2>
+    <div class="sec-bar"></div>
+    <div class="cert-providers">
+      <div class="cert-provider-block">
+        <h3>DataCamp</h3>
+        <div class="cert-list">
+          <a href="https://www.datacamp.com/certificate/SQA0014893345638" target="_blank" class="cert-item">
+            <div><div class="cert-name">SQL Associate ↗</div><div class="cert-sub">Certified · View credential</div></div>
+            <span class="cert-badge">Certified</span>
+          </a>
+          <div class="cert-item"><div><div class="cert-name">Introduction to Python</div><div class="cert-sub">DataCamp</div></div></div>
+          <div class="cert-item"><div><div class="cert-name">Intermediate Python</div><div class="cert-sub">DataCamp</div></div></div>
+          <div class="cert-item"><div><div class="cert-name">Data Manipulation with pandas</div><div class="cert-sub">DataCamp</div></div></div>
+          <div class="cert-item"><div><div class="cert-name">Introduction to Statistics in Python</div><div class="cert-sub">DataCamp</div></div></div>
+          <div class="cert-item"><div><div class="cert-name">Joining Data with pandas</div><div class="cert-sub">DataCamp</div></div></div>
+          <div class="cert-item"><div><div class="cert-name">Introduction to R</div><div class="cert-sub">DataCamp</div></div></div>
+          <div class="cert-item"><div><div class="cert-name">Data Manipulation with dplyr</div><div class="cert-sub">DataCamp · R</div></div></div>
+          <div class="cert-item"><div><div class="cert-name">Introduction to Power BI</div><div class="cert-sub">DataCamp</div></div></div>
+        </div>
+      </div>
+      <div class="cert-provider-block">
+        <h3>Other Providers</h3>
+        <div class="cert-list">
+          <a href="https://credentials.databricks.com/profile/shreyassreedhara184474/wallet" target="_blank" class="cert-item">
+            <div><div class="cert-name">Databricks Certification ↗</div><div class="cert-sub">Credential Wallet · View</div></div>
+            <span class="cert-badge">Certified</span>
+          </a>
+          <div class="cert-item"><div><div class="cert-name">Machine Learning</div><div class="cert-sub">SkillVertex</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Shreyas Sreedhara · Melbourne, VIC</p>
+  <div>
+    <a href="https://github.com/shreyassharma3002" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/shreyas-s-567b32220/" target="_blank">LinkedIn</a>
+    <a href="mailto:shreyas.sharma3002@gmail.com">Email</a>
+    <a href="https://www.datacamp.com/certificate/SQA0014893345638" target="_blank">DataCamp</a>
+    <a href="https://credentials.databricks.com/profile/shreyassreedhara184474/wallet" target="_blank">Databricks</a>
+  </div>
+</footer>
+
+<script>
+// Photo avatar fallback
+(function(){
+  const img = document.getElementById('heroImg');
+  const draw = () => {
+    const c = document.createElement('canvas');
+    c.width = c.height = 400;
+    const ctx = c.getContext('2d');
+    ctx.beginPath(); ctx.arc(200,200,200,0,Math.PI*2); ctx.clip();
+    const g = ctx.createLinearGradient(0,0,400,400);
+    g.addColorStop(0,'#1e3a8a'); g.addColorStop(1,'#1d4ed8');
+    ctx.fillStyle=g; ctx.fillRect(0,0,400,400);
+    ctx.fillStyle='rgba(255,255,255,0.9)';
+    ctx.font='bold 120px Inter,sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('SS',200,200);
+    img.src=c.toDataURL(); img.onerror=null;
+  };
+  img.onerror=draw;
+  if(!img.src||img.src===window.location.href) draw();
+})();
+
+// Dark/light toggle
+const btn=document.getElementById('themeBtn');
+let dark=false;
+btn.addEventListener('click',()=>{
+  dark=!dark;
+  document.documentElement.setAttribute('data-theme',dark?'dark':'');
+  btn.textContent=dark?'☀️':'🌙';
+});
+
+// Hamburger menu
+const hamburger=document.getElementById('hamburger');
+const navLinks=document.getElementById('navLinks');
+hamburger.addEventListener('click',()=>{
+  hamburger.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+// Close menu when a nav link is clicked
+document.querySelectorAll('.nav-link-item').forEach(link=>{
+  link.addEventListener('click',()=>{
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+// Scroll fade-in
+const els=document.querySelectorAll('.skill-card,.tl-card,.edu-card,.cert-item,.hl-card,.stat-box');
+els.forEach(el=>el.classList.add('fade-in'));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.1});
+els.forEach(el=>obs.observe(el));
+
+// Active nav highlight
+window.addEventListener('scroll',()=>{
+  let cur='';
+  document.querySelectorAll('section[id]').forEach(s=>{
+    if(window.scrollY>=s.offsetTop-80) cur=s.id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.style.color=a.getAttribute('href')==='#'+cur?'#fff':'';
+  });
+});
+</script>
+</body>
+</html>
